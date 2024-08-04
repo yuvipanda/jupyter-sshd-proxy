@@ -18,7 +18,7 @@ The following packages must be present in the container environment:
 
 - [openssh](https://www.openssh.com/). You can install this from `conda-forge` or from `apt`
   as you desire.
-- `jupyter-sshd` itself must be pre-installed in the container - you *can not* dynamically
+- [`jupyter-sshd-proxy`](https://pypi.org/project/jupyter-sshd-proxy/) itself must be pre-installed in the container - you *can not* dynamically
   install it with `!pip` after you start the container.
 
 The docker image `quay.io/yuvipanda/pangeo-jupyter-sshd-proxy:latest` can be used
