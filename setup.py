@@ -6,9 +6,9 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setuptools.setup(
-    name="jupyter-sshd",
+    name="jupyter-sshd-proxy",
     version='0.1.0',
-    url="https://github.com/yuvipanda/jupyter-sshd",
+    url="https://github.com/yuvipanda/jupyter-sshd-proxy",
     author="Yuvi Panda",
     description="Run sshd under jupyter",
     long_description=long_description,
@@ -20,7 +20,7 @@ setuptools.setup(
     ],
     entry_points={
         'jupyter_serverproxy_servers': [
-            'sshd = jupyter_sshd:setup_sshd',
+            'sshd = jupyter_sshd_proxy:setup_sshd',
         ]
     }
 )
