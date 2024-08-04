@@ -5,6 +5,7 @@ import subprocess
 from typing import Any, Dict
 
 HOSTKEY_PATH = os.path.expanduser('~/.ssh/jupyter_sshd_hostkey')
+AUTHORIZED_KEYS_PATH = os.environ.get('JUPYTER_SSHD_PROXY_AUTHORIZED_KEYS_PATH', '.ssh/authorized_keys .ssh/authorized_keys2')
 
 def setup_sshd() -> Dict[str, Any]:
     if not os.path.exists(HOSTKEY_PATH):
@@ -18,7 +19,8 @@ def setup_sshd() -> Dict[str, Any]:
         sshd_path, '-h', HOSTKEY_PATH, '-D', '-e',
         '-o', 'ListenAddress 127.0.0.1:{port}',
         # Last login info is from /var/log/lastlog, which is transient in containerized systems
-        '-o', 'PrintLastLog no'
+        '-o', 'PrintLastLog no',
+        '-o', f'AuthorizedKeysFile {AUTHORIZED_KEYS_PATH}',
     ]
     return {
         "command": cmd,
