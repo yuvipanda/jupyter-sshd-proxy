@@ -16,7 +16,9 @@ def setup_sshd() -> Dict[str, Any]:
 
     cmd = [
         sshd_path, '-h', HOSTKEY_PATH, '-D', '-e',
-        '-o', 'ListenAddress 127.0.0.1:{port}'
+        '-o', 'ListenAddress 127.0.0.1:{port}',
+        # Last login info is from /var/log/lastlog, which is transient in containerized systems
+        '-o', 'PrintLastLog no'
     ]
     return {
         "command": cmd,
