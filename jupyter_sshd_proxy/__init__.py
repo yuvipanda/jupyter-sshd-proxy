@@ -6,6 +6,7 @@ from typing import Any, Dict
 
 HOSTKEY_PATH = os.path.expanduser('~/.ssh/jupyter_sshd_hostkey')
 AUTHORIZED_KEYS_PATH = os.environ.get('JUPYTER_SSHD_PROXY_AUTHORIZED_KEYS_PATH', '.ssh/authorized_keys .ssh/authorized_keys2')
+SSHD_LOG_LEVEL = os.environ.get('JUPYTER_SSHD_PROXY_LOG_LEVEL', 'INFO')
 
 def setup_sshd() -> Dict[str, Any]:
     if not os.path.exists(HOSTKEY_PATH):
@@ -21,6 +22,7 @@ def setup_sshd() -> Dict[str, Any]:
         # Last login info is from /var/log/lastlog, which is transient in containerized systems
         '-o', 'PrintLastLog no',
         '-o', f'AuthorizedKeysFile {AUTHORIZED_KEYS_PATH}',
+        '-o', f'LogLevel {SSHD_LOG_LEVEL}'
     ]
     return {
         "command": cmd,
