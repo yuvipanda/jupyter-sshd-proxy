@@ -29,6 +29,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r dev-requirements.txt
         pip install -e .
+        wget https://github.com/vi/websocat/releases/download/v1.13.0/websocat.x86_64-unknown-linux-musl -O /usr/local/bin/websocat
+        chmod +x /usr/local/bin/websocat
     - name: Test with pytest
       run: |
         pytest tests/
