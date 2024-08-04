@@ -30,5 +30,8 @@ jobs:
         chmod +x /usr/local/bin/websocat
     - name: Test with pytest
       run: |
+        echo $PATH
+        which sshd
+        find /etc/ssh
         export JUPYTER_SSHD_PROXY_LOG_LEVEL=DEBUG
         pytest tests/
