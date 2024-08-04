@@ -55,7 +55,7 @@ def get_ssh_client_options(random_port, token, authorized_keys_path):
 
 def test_ssh_command_execution(jupyter_server):
     cmd = [
-        'ssh',
+        'ssh', '-v',
     ] + [f"-o={o}" for o in get_ssh_client_options(*jupyter_server)] + ['127.0.0.1', 'hostname']
 
     out = subprocess.check_output(cmd).decode().strip()
@@ -65,7 +65,7 @@ def test_ssh_command_execution(jupyter_server):
 
 def test_ssh_interactive(jupyter_server):
     cmd = [
-        'ssh',
+        'ssh', '-v',
     ] + [f"-o={o}" for o in get_ssh_client_options(*jupyter_server)] + ['127.0.0.1', 'hostname']
 
     proc = pexpect.spawn(shlex.join(cmd), echo=False)
