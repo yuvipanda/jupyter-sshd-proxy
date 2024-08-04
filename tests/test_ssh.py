@@ -49,7 +49,8 @@ def get_ssh_client_options(random_port, token, authorized_keys_path):
     return  [
         f'ProxyCommand=websocat --binary -H="Authorization: token {token}" asyncstdio: ws://%h:{random_port}/sshd/',
         f'User={getpass.getuser()}',
-        f'IdentityFile={authorized_keys_path}'
+        f'IdentityFile={authorized_keys_path}',
+        'StrictHostKeyChecking=no' # FIXME: Validate this correctly later
     ]
 
 def test_ssh_command_execution(jupyter_server):
