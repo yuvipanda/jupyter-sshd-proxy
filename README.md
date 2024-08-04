@@ -21,6 +21,11 @@ The following packages must be present in the container environment:
 - `jupyter-sshd` itself must be pre-installed in the container - you *can not* dynamically
   install it with `!pip` after you start the container.
 
+The docker image `quay.io/yuvipanda/pangeo-jupyter-sshd-proxy:latest` can be used
+for testing purposes. It it is based on the pangeo-notebook docker image, and has
+the pre-requisites required pre-installed. You can find the source `Dockerfile` for
+it in this repository.
+
 ### Client pre-requisites
 
 [websocat](https://github.com/vi/websocat) must be installed on the client machine.
