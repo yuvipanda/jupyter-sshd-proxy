@@ -1,6 +1,5 @@
 import tempfile
 import pexpect
-import pwd
 import os
 import shlex
 import pytest
@@ -25,7 +24,7 @@ def random_port():
 def jupyter_server(random_port):
     token = secrets.token_hex(16)
     c = [
-        'jupyter', 'lab',
+        'jupyter', 'server',
         f'--port={random_port}', f'--ServerApp.token={token}', '--ip=127.0.0.1',
         '--no-browser'
     ]
