@@ -51,7 +51,8 @@ does not exist).
 
 ```
 Host <YOUR-JUPYTERHUB-DOMAIN>
-    ProxyCommand=websocat --binary -H='Authorization: token <YOUR-JUPYTERHUB-TOKEN>' asyncstdio: wss://%h/user/<YOUR-JUPYTERHUB-USERNAME>/sshd/
+    User <YOUR-JUPYTERHUB-CONTAINER-USER-NAME>
+    ProxyCommand websocat --binary -H='Authorization: token <YOUR-JUPYTERHUB-TOKEN>' asyncstdio: wss://%h/user/<YOUR-JUPYTERHUB-USERNAME>/sshd/
 ```
 
 replace:
@@ -59,12 +60,15 @@ replace:
  - `<YOUR-JUPYTERHUB-DOMAIN>` with your hub domain (for example, `hub.openveda.cloud`)
  - `<YOUR-JUPYTERHUB-TOKEN>` with the token you generated earlier
  - `<YOUR-JUPYTERHUB-USERNAME>` with your jupyterhub username
+ - `<YOUR-JUPYTERHUB-CONTAINER-USERNAME>` is the name of the unix user created inside your JupyterHub container. This is most
+    commonly `jovyan`. You can verify this by running `whoami` or `id` in the terminal in your JupyterHub.
 
 Here's an example:
 
 ```
 Host hub.openveda.cloud
-    ProxyCommand=websocat --binary -H='Authorization: token a56ff59c93f64fb587f46b06af9422ee' asyncstdio: wss://%h/user/yuvipanda/sshd/
+    User jovyan
+    ProxyCommand websocat --binary -H='Authorization: token a56ff59c93f64fb587f46b06af9422ee' asyncstdio: wss://%h/user/yuvipanda/sshd/
 ```
 
 We're almost there!
