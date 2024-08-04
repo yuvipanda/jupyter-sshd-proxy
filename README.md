@@ -1,6 +1,6 @@
-# jupyter-sshd
+# jupyter-sshd-proxy
 
-Run sshd under Jupyter.
+Enable sshing into a remote Jupyter Server.
 
 Primarily for use with remote JupyterHubs, so users can access them via `ssh`. Enables everything
 one would normally do with `ssh` - copy files, run interactive commands, use the proprietary
