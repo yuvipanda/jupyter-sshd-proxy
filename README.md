@@ -32,6 +32,10 @@ it in this repository.
 `brew install websocat` works on Mac OS, and pre-built binaries [are available](https://github.com/vi/websocat/releases)
 for all other operating systems.
 
+### Start your server
+
+`jupyter-sshd` only works after you start your JupyterHub server. So, start your server!
+
 ### Create a JupyterHub Token
 
 We will need to create a JupyterHub token for authentication.
@@ -44,11 +48,7 @@ We will need to create a JupyterHub token for authentication.
 3. Create a new Token, and keep it safe. **Treat this like you would treat a password to your
    JupyterHub instance**! It is recommended you set an expiry date for this.
 
-### Start your server
-
-`jupyter-sshd` only works after you start your JupyterHub server. So, start your server!
-
-### Setup your `~/.ssh/config`
+### Setup your local `~/.ssh/config`
 
 We will set up our ssh config file to tell `ssh` how to connect to our JupyterHub. Add
 an entry that looks like this to the end of your `~/.ssh/config` file (create it if it
@@ -78,7 +78,7 @@ Host hub.openveda.cloud
 
 We're almost there!
 
-### Setup ssh keys on your JupyterHub
+### Setup ssh keys on your JupyterHub server
 
 There are still two levels of authentication - your JupyterHub token, as well as some ssh keys. You need to put some ssh public keys
 in `~/.ssh/authorized_keys` after you start your JupyterHub server, and have the private keys available in your ssh client machine.
