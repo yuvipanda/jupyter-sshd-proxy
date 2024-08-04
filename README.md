@@ -1,5 +1,7 @@
 # jupyter-sshd-proxy
 
+[![Latest PyPI version](https://img.shields.io/pypi/v/jupyter-sshd-proxy?logo=pypi)](https://pypi.python.org/pypi/jupyter-sshd-proxy)
+
 Enable sshing into a remote Jupyter Server.
 
 Primarily for use with remote JupyterHubs, so users can access them via `ssh`. Enables everything
