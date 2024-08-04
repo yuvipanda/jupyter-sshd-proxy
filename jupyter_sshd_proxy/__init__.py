@@ -1,5 +1,6 @@
 import os
 import shutil
+import shlex
 import subprocess
 
 from typing import Any, Dict
@@ -24,6 +25,7 @@ def setup_sshd() -> Dict[str, Any]:
         '-o', f'AuthorizedKeysFile {AUTHORIZED_KEYS_PATH}',
         '-o', f'LogLevel {SSHD_LOG_LEVEL}'
     ]
+    print(shlex.join(cmd))
     return {
         "command": cmd,
         "raw_socket_proxy": True,
