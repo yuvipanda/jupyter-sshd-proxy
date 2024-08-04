@@ -85,7 +85,7 @@ The simplest way to do this is to rely on your GitHub public keys!
 
    ```bash
    mkdir -p ~/.ssh
-   curl -L https://github.com/<YOUR-GITHUB-USERNAME>.keys > ~/.ssh/authorized_keys
+   wget https://github.com/<YOUR-GITHUB-USERNAME>.keys -O ~/.ssh/authorized_keys
    chmod 0600 ~/.ssh/authorized_keys
    ```
 
