@@ -60,9 +60,10 @@ def test_ssh_command_execution(jupyter_server):
         'ssh',
     ] + [f"-o={o}" for o in get_ssh_client_options(*jupyter_server)] + ['127.0.0.1', 'hostname']
 
-    out = subprocess.check_output(cmd).decode().strip()
+    proc = subprocess.run(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+    print(proc.stderr)
 
-    assert out == socket.gethostname()
+    assert proc.stdout.decode().strip() == socket.gethostname()
 
 
 def test_ssh_interactive(jupyter_server):
