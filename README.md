@@ -11,8 +11,8 @@ VSCode [Remote Development](https://code.visualstudio.com/docs/remote/ssh) funct
 ## Usage
 
 For this document, we will assume you are running inside a containerized JupyterHub enviornment
-(such as kubernetes or docker). `jupyter-sshd` itself does not require containerizatio - this is
-simply to make instructions easier.
+(such as kubernetes or docker). `jupyter-sshd-proxy` itself does not require
+containerization - this is simply to make instructions easier.
 
 ### Server pre-requisities
 
@@ -36,7 +36,7 @@ for all other operating systems.
 
 ### Start your server
 
-`jupyter-sshd` only works after you start your JupyterHub server. So, start your server!
+`jupyter-sshd-proxy` only works after you start your JupyterHub server. So, start your server!
 
 ### Create a JupyterHub Token
 
