@@ -25,8 +25,7 @@ def setup_sshd() -> Dict[str, Any]:
         # Last login info is from /var/log/lastlog, which is transient in containerized systems
         '-o', 'PrintLastLog no',
         '-o', f'AuthorizedKeysFile {AUTHORIZED_KEYS_PATH}',
-        '-o', f'LogLevel {SSHD_LOG_LEVEL}',
-        '-o', 'UsePrivilegeSeparation no',
+        '-o', f'LogLevel {SSHD_LOG_LEVEL}'
     ]
 
     print(shlex.join(cmd))
