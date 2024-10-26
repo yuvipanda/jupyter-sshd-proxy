@@ -97,3 +97,25 @@ def test_ssh_interactive(jupyter_server):
     proc.wait()
     assert proc.exitstatus == 0
 
+
+# Test for both the sftp protocol (default on newer scp) ("-s"), and the older
+# scp protocol ("-O").
+@pytest.mark.parametrize("extra_scp_args", [["-s"], ["-O"]])
+def test_scp(jupyter_server, extra_scp_args):
+    with tempfile.NamedTemporaryFile() as f, tempfile.TemporaryDirectory() as d:
+        file_contents = secrets.token_hex()
+        f.write(file_contents.encode())
+        f.flush()
+
+        target_path = os.path.join(d, "target")
+
+        cmd = [
+            'scp', '-v',
+        ] + extra_scp_args + [f"-o={o}" for o in get_ssh_client_options(*jupyter_server)] + [
+            f.name, f'127.0.0.1:{target_path}'
+        ]
+
+        proc = subprocess.run(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+
+        with open(target_path) as tpf:
+            assert tpf.read() == file_contents
