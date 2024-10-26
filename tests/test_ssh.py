@@ -29,7 +29,8 @@ def jupyter_server(random_port):
         '--no-browser'
     ]
     env = os.environ.copy()
-    with tempfile.TemporaryDirectory() as temp_dir:
+    dir_prefix = os.path.join(os.getcwd(), "tmp-")
+    with tempfile.TemporaryDirectory(prefix=dir_prefix) as temp_dir:
         os.chmod(temp_dir, 0o700)
         authorized_keys_path = os.path.join(temp_dir, 'authorized_keys')
         subprocess.check_call(['ssh-keygen', '-f', authorized_keys_path, '-q', '-N', ''])
