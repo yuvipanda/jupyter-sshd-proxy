@@ -31,6 +31,12 @@ def jupyter_server(random_port):
         '--no-browser'
     ]
     env = os.environ.copy()
+
+    # sshd requires that the path to the authorized keys (and every ancestor) is fully owned
+    # by the user who is trying to log in (or root), and mode is not group or world writeable.
+    # Since that's not necessarily true for `/tmp`, we can not put our keys there for tests.
+    # Create them instead in cwd, which we assume matches this description instead. We
+    # clean up after ourselves.
     dir_prefix = os.path.join(os.getcwd(), "tmp-")
     with tempfile.TemporaryDirectory(prefix=dir_prefix) as temp_dir:
         os.chmod(temp_dir, 0o700)
