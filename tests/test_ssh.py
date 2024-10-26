@@ -65,13 +65,15 @@ def test_ssh_command_execution(jupyter_server):
 
 
 def test_ssh_interactive(jupyter_server):
+    # Explicitly call /bin/sh without any args, so we can run without any prompts
     cmd = [
         'ssh',
-    ] + [f"-o={o}" for o in get_ssh_client_options(*jupyter_server)] + ['127.0.0.1', 'hostname']
+    ] + [f"-o={o}" for o in get_ssh_client_options(*jupyter_server)] + ['127.0.0.1', '/bin/sh']
 
     proc = pexpect.spawn(shlex.join(cmd), echo=False)
     proc.sendline('hostname')
     assert proc.readline().decode().strip() == socket.gethostname()
+    proc.sendline("exit")
     proc.wait()
     assert proc.exitstatus == 0
 
