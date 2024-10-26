@@ -8,6 +8,8 @@ import secrets
 import getpass
 import time
 import socket
+from urllib.request import urlopen, Request
+from urllib.error import URLError
 
 @pytest.fixture
 def random_port():
@@ -38,8 +40,18 @@ def jupyter_server(random_port):
         env['JUPYTER_SSHD_PROXY_AUTHORIZED_KEYS_PATH'] = authorized_keys_path + '.pub'
         proc = subprocess.Popen(c, env=env)
 
-        # Should healthcheck instead but HEY
-        time.sleep(10)
+        # Wait for server to be fully up before we yield
+        req = Request(f"http://127.0.0.1:{random_port}/api/status", headers={"Authorization": f"token {token}"})
+        while True:
+            try:
+                resp = urlopen(req)
+                if resp.status == 200:
+                    break
+            except URLError as e:
+                if not isinstance(e.reason, ConnectionRefusedError):
+                    raise
+            print("Waiting for jupyter server to come up...")
+            time.sleep(1)
 
         yield (random_port, token, authorized_keys_path)
 
