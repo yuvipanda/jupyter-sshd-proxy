@@ -38,7 +38,7 @@ def jupyter_server(random_port):
         proc = subprocess.Popen(c, env=env)
 
         # Should healthcheck instead but HEY
-        time.sleep(1)
+        time.sleep(10)
 
         yield (random_port, token, authorized_keys_path)
 
