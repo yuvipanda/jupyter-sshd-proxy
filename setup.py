@@ -7,7 +7,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 
 setuptools.setup(
     name="jupyter-sshd-proxy",
-    version='0.2.0',
+    version='0.3.0',
     url="https://github.com/yuvipanda/jupyter-sshd-proxy",
     author="Yuvi Panda",
     description="Run sshd under jupyter",
