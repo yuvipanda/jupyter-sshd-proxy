@@ -76,11 +76,12 @@ Here's an example:
 Host hub.openveda.cloud
     User jovyan
     ProxyCommand websocat --binary -H="Authorization: token a56ff59c93f64fb587f46b06af9422ee" asyncstdio: wss://%h/user/yuvipanda/sshd/
+    IdentitiesOnly yes # Don't use password auth
 ```
 
-*Note that if you are connecting to your JupyterHub in a VSCode fork that uses the 
+*Note that if you are connecting to your JupyterHub in a VSCode fork that uses the
 [open-remote-ssh](https://github.com/jeanp413/open-remote-ssh) extension, such as VSCodium, Cursor, or Positron,
-you need to make sure the value of the -H argument (`"Authorization: token xxxx"`) is enclosed in double 
+you need to make sure the value of the -H argument (`"Authorization: token xxxx"`) is enclosed in double
 quotes and not single quotes, or the connection will fail.*
 
 We're almost there!
