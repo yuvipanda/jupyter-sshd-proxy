@@ -16,10 +16,9 @@ containerization - this is simply to make instructions easier.
 
 ### Server pre-requisities
 
-The following packages must be present in the container environment:
+The following packages must be present in the container:
 
-- [openssh](https://www.openssh.com/). You can install this from `conda-forge` or from `apt`
-  as you desire.
+- [openssh](https://www.openssh.com/). The `sshd` binary may be bundled with the `openssh` package (e.g. on conda-forge) or the `openssh-server` package (e.g. on Ubuntu).
 - [`jupyter-sshd-proxy`](https://pypi.org/project/jupyter-sshd-proxy/) itself must be pre-installed in the container - you *can not* dynamically
   install it with `!pip` after you start the container.
 
